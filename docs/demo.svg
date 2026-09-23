@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="300" viewBox="0 0 1000 300" role="img" aria-labelledby="title desc">
+  <title id="title">ArchitectureGraph example: follow an order-created event</title>
+  <desc id="desc">An order creation function publishes order.created, which a customer notification function subscribes to. Each edge cites its source file.</desc>
+  <rect width="1000" height="300" rx="20" fill="#101827"/>
+  <text x="40" y="48" fill="#e5edf7" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="700">Follow a change through the codebase</text>
+  <text x="40" y="77" fill="#9aacc5" font-family="Segoe UI,Arial,sans-serif" font-size="15">archgraph trace-event order.created --db commerce.db</text>
+  <rect x="40" y="115" width="267" height="112" rx="13" fill="#1b2a3c" stroke="#527b9b"/>
+  <text x="60" y="147" fill="#7cd4ff" font-family="Segoe UI,Arial,sans-serif" font-size="12" font-weight="700">PYTHON SYMBOL</text>
+  <text x="60" y="176" fill="#f0f6fc" font-family="Segoe UI,Arial,sans-serif" font-size="19">create_order</text>
+  <text x="60" y="205" fill="#9aacc5" font-family="Segoe UI,Arial,sans-serif" font-size="13">src/orders.py:6</text>
+  <rect x="367" y="115" width="267" height="112" rx="13" fill="#1b2a3c" stroke="#4b9e8c"/>
+  <text x="387" y="147" fill="#7ae1c6" font-family="Segoe UI,Arial,sans-serif" font-size="12" font-weight="700">EVENT</text>
+  <text x="387" y="176" fill="#f0f6fc" font-family="Segoe UI,Arial,sans-serif" font-size="19">order.created</text>
+  <text x="387" y="205" fill="#9aacc5" font-family="Segoe UI,Arial,sans-serif" font-size="13">AsyncAPI + source evidence</text>
+  <rect x="694" y="115" width="266" height="112" rx="13" fill="#1b2a3c" stroke="#a481d1"/>
+  <text x="714" y="147" fill="#d2abff" font-family="Segoe UI,Arial,sans-serif" font-size="12" font-weight="700">TYPESCRIPT SYMBOL</text>
+  <text x="714" y="176" fill="#f0f6fc" font-family="Segoe UI,Arial,sans-serif" font-size="19">notifyCustomer</text>
+  <text x="714" y="205" fill="#9aacc5" font-family="Segoe UI,Arial,sans-serif" font-size="13">src/notifications.ts</text>
+  <path d="M312 171h48m-10-9 10 9-10 9M639 171h48m-10-9 10 9-10 9" stroke="#91abc4" stroke-width="2" fill="none"/>
+  <text x="40" y="269" fill="#9aacc5" font-family="Segoe UI,Arial,sans-serif" font-size="13">Example repository · Python AST + conservative TypeScript heuristics · inspect source before acting</text>
+</svg>

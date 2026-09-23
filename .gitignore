@@ -1,5 +1,6 @@
 .venv/
 .venv-codex/
+build/
 __pycache__/
 *.py[cod]
 *.egg-info/

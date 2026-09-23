@@ -7,6 +7,12 @@ name = "architecture-graph"
 version = "0.1.0"
 description = "Local architecture, contract, flow, and change-impact graph for coding agents"
 requires-python = ">=3.10"
+license = "MIT"
+
+[project.urls]
+Homepage = "https://github.com/Osirisdynasty/ArchitectureGraph"
+Repository = "https://github.com/Osirisdynasty/ArchitectureGraph"
+Issues = "https://github.com/Osirisdynasty/ArchitectureGraph/issues"
 
 [project.scripts]
 archgraph = "archgraph.cli:main"

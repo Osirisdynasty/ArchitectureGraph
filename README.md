@@ -1,6 +1,14 @@
 # ArchitectureGraph
 
-**ArchitectureGraph** is a local Codex plugin and command-line tool for turning a Python or JavaScript/TypeScript repository into a queryable SQLite architecture graph. It helps coding agents answer the questions that are usually expensive to reconstruct from source code: what exists, what depends on it, which APIs and events form a flow, and what a proposed change is likely to affect.
+[![Tests](https://github.com/Osirisdynasty/ArchitectureGraph/actions/workflows/tests.yml/badge.svg)](https://github.com/Osirisdynasty/ArchitectureGraph/actions/workflows/tests.yml) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
+**Find the code behind a feature—and the likely blast radius of a change.** ArchitectureGraph builds a local, queryable architecture graph from Python and JavaScript/TypeScript repositories. Ask where an event starts and ends, which contracts a module exposes, or what a proposed change may touch. Results include source evidence and confidence rather than just a diagram.
+
+![An order-created event connects Python order creation to a TypeScript notification subscriber](docs/demo.svg)
+
+The picture comes from the included [commerce example](examples/commerce). `create_order` publishes `order.created` at `src/orders.py:6`; `notifyCustomer` subscribes in `src/notifications.ts`. The TypeScript edge is heuristic, so review source before acting on it.
+
+ArchitectureGraph works as a CLI or a Codex MCP plugin. The graph stays in a local SQLite file. No hosted service or account is required.
 
 It is designed for agent workflows where a small, evidence-backed map of the codebase is more useful than a raw file search.
 
@@ -14,21 +22,43 @@ It is designed for agent workflows where a small, evidence-backed map of the cod
 
 > This is an MVP. Python analysis uses the native AST; JavaScript/TypeScript analysis intentionally uses conservative heuristics until a Tree-sitter or TypeScript-service enricher is added.
 
-## Quick start
+## Try it in two minutes
 
-```powershell
+Requires Python 3.10+ and Git. Clone this repository, then install it into an active Python environment. This project is not published on PyPI yet.
+
+macOS/Linux:
+
+```bash
+git clone https://github.com/Osirisdynasty/ArchitectureGraph.git
 cd ArchitectureGraph
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-pip install -e .
-archgraph index .\examples\commerce --db .\commerce.db
-archgraph project-map --db .\commerce.db
-archgraph trace-event order.created --db .\commerce.db
-archgraph requirement-impact "notify a customer when an order is placed" --db .\commerce.db
-archgraph simulate-change --db .\commerce.db --description "add SMS order notification" --kind EVENT
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -e .
+archgraph index examples/commerce --db commerce.db
+archgraph trace-event order.created --db commerce.db
 ```
 
-Use `archgraph --help` to see every command. `archgraph serve --db <path>` starts the MCP stdio server. After installing this plugin in Codex, its configured MCP server is `architecture-graph` and exposes the same query surface. The declared zero-argument `archgraph-mcp` entry point uses `ARCHGRAPH_DB` when set, otherwise creates/opens `architecture-graph.db` in its working directory; pass `--db <path>` for an explicit database.
+Windows PowerShell:
+
+```powershell
+git clone https://github.com/Osirisdynasty/ArchitectureGraph.git
+Set-Location ArchitectureGraph
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -e .
+archgraph index .\examples\commerce --db .\commerce.db
+archgraph trace-event order.created --db .\commerce.db
+```
+
+Next, try `archgraph project-map --db commerce.db` or `archgraph requirement-impact "notify a customer when an order is placed" --db commerce.db`. See the [Click case study](docs/click-case-study.md) for a run against a real public repository.
+
+## Use with Codex
+
+The repository contains a Codex plugin manifest and `.mcp.json`. Install the Python package first in an environment whose `archgraph-mcp` executable is on the PATH used by Codex, then install the plugin from a local marketplace or configure its MCP server. The server name is `architecture-graph`. `archgraph-mcp` uses `ARCHGRAPH_DB` when set; otherwise it opens `architecture-graph.db` in its working directory. For a fixed database, launch `archgraph serve --db <path>` instead.
+
+The plugin is **not** yet in a public Codex marketplace; cloning this repository alone does not activate it in Codex. The CLI quick start above works independently of Codex.
+
+Use `archgraph --help` to see all commands and `python -m unittest discover -s tests -v` to run the test suite.
 
 ## Tool examples
 
@@ -66,3 +96,7 @@ archgraph verify-spec --db .\commerce.db --spec .\examples\commerce\spec.json
 - YAML parsing, semantic requirement extraction, auth-aware API discovery, and a visual graph UI.
 
 See [DESIGN.md](DESIGN.md) for the four-layer model and extension architecture.
+
+## License
+
+[MIT](LICENSE). Contributions and reproducible bug reports are welcome via GitHub issues and pull requests.
