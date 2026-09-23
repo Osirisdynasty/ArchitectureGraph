@@ -1,0 +1,18 @@
+{
+  "name": "architecture-graph",
+  "version": "0.1.0",
+  "description": "Local architecture, contract, flow, and change-impact analysis for coding agents.",
+  "author": {
+    "name": "Local developer"
+  },
+  "interface": {
+    "displayName": "ArchitectureGraph",
+    "shortDescription": "Map code architecture and predict change impact.",
+    "longDescription": "Indexes Python and JavaScript/TypeScript repositories into a local SQLite graph for dependency, contract, flow, requirement, and hypothetical-change analysis.",
+    "developerName": "Local developer",
+    "category": "Productivity",
+    "capabilities": ["Local analysis", "MCP tools", "SQLite graph"],
+    "defaultPrompt": "Index this repository and show its architecture map."
+  },
+  "mcpServers": "./.mcp.json"
+}

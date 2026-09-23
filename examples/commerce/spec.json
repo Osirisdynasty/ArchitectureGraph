@@ -1,0 +1,5 @@
+{
+  "requirements": [
+    {"id": "REQ-ORDER-NOTIFY", "text": "Notify customer after order created", "must_touch": ["src.orders", "src.notifications"]}
+  ]
+}

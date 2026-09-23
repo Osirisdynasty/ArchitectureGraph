@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "architecture-graph"
+version = "0.1.0"
+description = "Local architecture, contract, flow, and change-impact graph for coding agents"
+requires-python = ">=3.10"
+
+[project.scripts]
+archgraph = "archgraph.cli:main"
+archgraph-mcp = "archgraph.mcp:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

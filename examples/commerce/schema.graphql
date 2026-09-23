@@ -1,0 +1,2 @@
+type Mutation { createOrder(customerId: ID!, amount: Int!): Order }
+type Order { id: ID!, customerId: ID! }

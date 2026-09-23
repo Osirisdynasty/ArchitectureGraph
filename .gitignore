@@ -1,0 +1,10 @@
+.venv/
+.venv-codex/
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.db
+.pytest_cache/
+coverage.xml
+htmlcov/
+*-output.txt

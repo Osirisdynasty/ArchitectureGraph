@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "architecture-graph": {
+      "command": "archgraph-mcp",
+      "args": [],
+      "env": {}
+    }
+  }
+}

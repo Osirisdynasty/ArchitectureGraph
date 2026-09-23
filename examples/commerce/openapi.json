@@ -1,0 +1,13 @@
+{
+  "openapi": "3.0.3",
+  "paths": {
+    "/orders": {
+      "post": {
+        "operationId": "createOrder",
+        "requestBody": {"content": {"application/json": {"schema": {"$ref": "#/components/schemas/CreateOrder"}}}},
+        "responses": {"201": {"description": "created", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/Order"}}}}}
+      }
+    }
+  },
+  "components": {"schemas": {"CreateOrder": {"type": "object"}, "Order": {"type": "object"}}}
+}

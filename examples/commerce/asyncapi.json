@@ -1,0 +1,4 @@
+{
+  "asyncapi": "2.6.0",
+  "channels": {"order.created": {"publish": {"message": {"name": "OrderCreated"}}, "subscribe": {"message": {"name": "OrderCreated"}}}}
+}
