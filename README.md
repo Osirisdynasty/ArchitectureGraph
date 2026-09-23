@@ -63,14 +63,14 @@ Use `archgraph --help` to see all commands and `python -m unittest discover -s t
 ## Tool examples
 
 ```powershell
-archgraph module-contract src.orders --db .\commerce.db
-archgraph symbol-impact src.orders.create_order --db .\commerce.db
-archgraph git-diff-impact --db .\commerce.db --repo .\examples\commerce --rev HEAD~1..HEAD
-archgraph snapshot --db .\commerce.db --out before.json
-archgraph index .\examples\commerce --db .\commerce.db
-archgraph snapshot --db .\commerce.db --out after.json
+archgraph module-contract src.orders --db commerce.db
+archgraph symbol-impact src.orders.create_order --db commerce.db
+archgraph git-diff-impact --db commerce.db --repo examples/commerce --rev HEAD~1..HEAD
+archgraph snapshot --db commerce.db --out before.json
+archgraph index examples/commerce --db commerce.db
+archgraph snapshot --db commerce.db --out after.json
 archgraph graph-diff --before before.json --after after.json
-archgraph verify-spec --db .\commerce.db --spec .\examples\commerce\spec.json
+archgraph verify-spec --db commerce.db --spec examples/commerce/spec.json
 ```
 
 `graph-diff` compares two snapshots directly and does not require `--db`. `verify-spec` accepts `{"requirements":[{"id":"REQ-1","text":"...","must_touch":["module.name"]}]}` and is independently runnable: it checks that every declared `must_touch` module exists and that the indexed graph contains at least one fact matching a meaningful requirement term. It does not require a prior `requirement-impact` call. Contract source files supported by the built-in adapters are OpenAPI/AsyncAPI JSON, GraphQL SDL, and Proto. YAML API descriptions are reported as adapter candidates unless converted to JSON; installing a YAML-capable adapter is intentionally deferred.
